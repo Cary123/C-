@@ -1,0 +1,15 @@
+﻿(1) hibernate.cfg.xml
+E:\study\project\c#\WinFormNHDemo\NHibernate\Cfg\Configuration.cs
+Configure()
+(2) Parse
+E:\study\project\c#\WinFormNHDemo\NHibernate\Cfg\ConfigurationSchema\HibernateConfiguration.cs
+Parse(XPathNavigator navigator, bool fromAppConfig)
+
+E:\study\project\c#\WinFormNHDemo\NHibernate\Cfg\ConfigurationSchema\CfgXmlHelper.cs
+CfgXmlHelper()
+
+E:\study\project\c#\WinFormNHDemo\NHibernate\Cfg\ConfigurationSchema\MappingConfiguration.cs
+Parse(XPathNavigator mappingElement)
+
+E:\study\project\c#\WinFormNHDemo\NHibernate\Cfg\Configuration.cs
+GetAllHbmXmlResourceNames(Assembly assembly)
