@@ -2,7 +2,7 @@
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="Entry" namespace="Entry.model" default-lazy="true">
   <class name="User" table="User">
     <id name="Id">
-      <column name="Id" sql-type="char(32)" not-null="true"/>
+      <column name="Id"  not-null="true"/>
       <generator class="uuid.hex"/>
     </id>
     <property name="Username" column="UserName"  not-null="true" unique="true"/>
@@ -10,6 +10,10 @@
     <property name="Gender"   column="Gender"   />
     <property name="Age"      column="Age"      />
     <property name="Phone"    column="Phone"    />
-    <property name="LastLoginTime"    column="LastLoginTime"    />
+    <property name="LastLoginTime"    column="LastLoginTime"/>
+    <set name="Orders" table="Order" inverse="true">
+      <key column="Id"></key>
+      <one-to-many class="Order"></one-to-many>
+    </set>
   </class>
 </hibernate-mapping>

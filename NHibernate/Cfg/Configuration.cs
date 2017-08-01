@@ -1812,7 +1812,7 @@ namespace NHibernate.Cfg
 				}
 				catch (MappingException)
 				{
-					throw;
+					throw; 
 				}
 				catch (Exception e)
 				{

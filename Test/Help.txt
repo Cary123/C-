@@ -1,15 +1,49 @@
 ﻿(1) hibernate.cfg.xml
-E:\study\project\c#\WinFormNHDemo\NHibernate\Cfg\Configuration.cs
+WinFormNHDemo\NHibernate\Cfg\Configuration.cs
 Configure()
 (2) Parse
-E:\study\project\c#\WinFormNHDemo\NHibernate\Cfg\ConfigurationSchema\HibernateConfiguration.cs
+WinFormNHDemo\NHibernate\Cfg\ConfigurationSchema\HibernateConfiguration.cs
 Parse(XPathNavigator navigator, bool fromAppConfig)
 
-E:\study\project\c#\WinFormNHDemo\NHibernate\Cfg\ConfigurationSchema\CfgXmlHelper.cs
+WinFormNHDemo\NHibernate\Cfg\ConfigurationSchema\CfgXmlHelper.cs
 CfgXmlHelper()
 
-E:\study\project\c#\WinFormNHDemo\NHibernate\Cfg\ConfigurationSchema\MappingConfiguration.cs
+WinFormNHDemo\NHibernate\Cfg\ConfigurationSchema\MappingConfiguration.cs
 Parse(XPathNavigator mappingElement)
 
-E:\study\project\c#\WinFormNHDemo\NHibernate\Cfg\Configuration.cs
+WinFormNHDemo\NHibernate\Cfg\Configuration.cs
 GetAllHbmXmlResourceNames(Assembly assembly)
+
+1. inverse属性
+Inverse属性的作用是：是否将对集合对象的修改反映到数据库中。 
+inverse属性的默认值为false，表示对集合对象的修改会被反映到数据库中；
+inverse=false 的为主动方，由主动方负责维护关联关系。
+inverse=”true” 表示对集合对象的修改不会被反映到数据库中。
+nverse只对集合起作用，也就是只对one-to-many或many-to-many有效, 集合元素包括<set/> <map/> <list/> <array /> <bag /> 
+
+2. cascade属性
+Cascade则在主控方发生操作时用来判断是否要进行级联操作 
+具有cascade属性的标记包括<many-to-one /> <one-to-one /> <any /> <set /><bag /> <idbag /> <list /> <array />
+cascade属性的作用是描述关联对象进行操作时的级联特性。因此，只有涉及到关系的元素才有cascade属性。 
+
+
+执行顺序
+WinFormNHDemo\NHibernate\Engine\ActionQueue.cs
+public void ExecuteActions()
+{
+	ExecuteActions(insertions);
+	ExecuteActions(updates);
+	ExecuteActions(collectionRemovals);
+	ExecuteActions(collectionUpdates);
+	ExecuteActions(collectionCreations);
+	ExecuteActions(deletions);
+}
+
+WinFormNHDemo\NHibernate\Action\EntityInsertAction.cs
+Execute
+
+
+WinFormNHDemo\NHibernate\Persister\Entity\AbstractEntityPersister.cs
+insert
+dynamic-insert="false"
+generate sql statement

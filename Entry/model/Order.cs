@@ -8,8 +8,9 @@ namespace Entry.model
 {
     public class Order
     {
-        public virtual string OrderId { get; set; }
-        public virtual string UserId { get; set; }
+        public virtual Guid OrderId { get; set; }
+        public virtual User User { get; set; }
         public virtual DateTime OrderDate { get; set; }
+        public virtual ISet<Product> Products { get; set; }
     }
 }

@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="Entry" namespace="Entry.model" default-lazy="true">
-  <class name="OrderProduct" table="OrderProduct">
-    <composite-id>
-      <key-property name="OrderId" column="OrderId"></key-property>
-      <key-property name="ProductId" column="ProductId"></key-property>
-    </composite-id>
-  </class>
-</hibernate-mapping>

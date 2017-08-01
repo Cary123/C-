@@ -8,7 +8,7 @@ namespace Entry.model
 {
     public class User
     {
-        public virtual string Id
+        public virtual Guid Id
         {
             get;
             set;
@@ -41,6 +41,12 @@ namespace Entry.model
         }
 
         public virtual DateTime LastLoginTime
+        {
+            get;
+            set;
+        }
+
+        public virtual ISet<Order> Orders
         {
             get;
             set;

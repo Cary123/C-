@@ -2,12 +2,15 @@
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="Entry" namespace="Entry.model" default-lazy="true">
   <class name="Order" table="Order">
     <id name="OrderId">
-      <column name="OrderId" sql-type="char(32)" not-null="true"/>
+      <column name="OrderId" not-null="true"/>
       <generator class="uuid.hex"/>
     </id>
     <property name="OrderDate" column="OrderDate"  not-null="true"/>
-    <many-to-one name="User" column="UserId" cascade="save-update">
-      
+    <many-to-one name="User" column="UserId" class="User" cascade="save-update">     
     </many-to-one>
+    <set name="Products" table="OrderProduct">
+      <key column="OrderId"></key>
+      <many-to-many column="ProductId" class="Product"></many-to-many>
+    </set>
   </class>
 </hibernate-mapping>
