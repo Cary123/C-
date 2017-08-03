@@ -1,16 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="Entry" namespace="Entry.model" default-lazy="true">
-  <class name="Order" table="Order">
-    <id name="OrderId">
-      <column name="OrderId" not-null="true"/>
-      <generator class="uuid.hex"/>
+  <class name="Order" table="Orders">
+    <id name="OrderId" type="Guid">
+      <column name="OrderId" sql-type="uniqueidentifier" not-null="true" unique="true"/>
+      <generator class="assigned"></generator>
     </id>
-    <property name="OrderDate" column="OrderDate"  not-null="true"/>
-    <many-to-one name="User" column="UserId" class="User" cascade="save-update">     
+    <property name="OrderDate">
+      <column name="OrderDate" sql-type="datetime" not-null="true"></column>
+    </property>
+    <many-to-one name="User" column="UserId" foreign-key="fk_001" class="User" cascade="save-update" not-null="true" lazy="no-proxy">   
     </many-to-one>
-    <set name="Products" table="OrderProduct">
+    <set name="Products" table="OrderProduct" inverse="true">
       <key column="OrderId"></key>
-      <many-to-many column="ProductId" class="Product"></many-to-many>
+      <many-to-many column="ProductId" class="Product" foreign-key="fk_002"></many-to-many>
     </set>
   </class>
 </hibernate-mapping>

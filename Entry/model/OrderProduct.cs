@@ -10,5 +10,6 @@ namespace Entry.model
     {
         public virtual Guid OrderId { get; set; }
         public virtual Guid ProductId { get; set; }
+        public string Detail { get; set; }
     }
 }

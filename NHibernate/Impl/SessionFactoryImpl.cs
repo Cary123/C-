@@ -223,7 +223,7 @@ namespace NHibernate.Impl
 																   settings.DefaultSchemaName, (RootClass)model);
 
 					identifierGenerators[model.EntityName] = generator;
-				}
+				 }
 			}
 			#endregion
 

@@ -24,17 +24,19 @@ namespace DAL.util
         public void DropTest()
         {
             var export = new NHibernate.Tool.hbm2ddl.SchemaExport(cfg);
+            export.SetOutputFile("E:\\DropSql.sql");
             export.Drop(true, true);
         }
         public void CreateTest()
         {
             var export = new NHibernate.Tool.hbm2ddl.SchemaExport(cfg);
-            export.Create(true, true);
-            export.SetOutputFile("E:\\sql.sql"); //设置输出目录  
+            export.SetOutputFile("E:\\CreateSql.sql");
+            export.Create(true, true);            
         }
         public void ExecuteTest()
         {
             var export = new NHibernate.Tool.hbm2ddl.SchemaExport(cfg);
+            export.SetOutputFile(@"E:\\ExecuteSql.sql"); 
             export.Execute(true, true, false);
         }
     }

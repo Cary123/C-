@@ -1,19 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="Entry" namespace="Entry.model" default-lazy="true">
-  <class name="User" table="User">
-    <id name="Id">
-      <column name="Id"  not-null="true"/>
-      <generator class="uuid.hex"/>
+  <class name="User" table="Users">
+    <id name="UserId">
+      <column name="UserId" sql-type="uniqueidentifier" not-null="true" unique="true"/>
+      <generator class="assigned"></generator>
     </id>
-    <property name="Username" column="UserName"  not-null="true" unique="true"/>
-    <property name="Password" column="Password" not-null="true" />
-    <property name="Gender"   column="Gender"   />
-    <property name="Age"      column="Age"      />
-    <property name="Phone"    column="Phone"    />
-    <property name="LastLoginTime"    column="LastLoginTime"/>
-    <set name="Orders" table="Order" inverse="true">
-      <key column="Id"></key>
-      <one-to-many class="Order"></one-to-many>
-    </set>
+    <property name="Username">
+      <column name="UserName" sql-type="nvarchar" length="100" unique="true" not-null="true"></column>
+    </property>
+    <property name="Password">
+      <column name="Password" sql-type="nvarchar" length="100" not-null="true"></column>
+    </property>
+    <property name="Gender">
+      <column name="Gender" sql-type="char" length="2" not-null="true"></column>
+    </property>
+    <property name="Age">
+      <column name="Age" sql-type="int" not-null="true"></column>
+    </property>
+    <property name="Phone">
+      <column name="Phone" sql-type="nvarchar" length="100" not-null="true"></column>
+    </property>
+    <property name="Email">
+      <column name="Email" sql-type="nvarchar" length="100" not-null="true"></column>
+    </property>
+    <property name="LastLoginTime">
+      <column name="LastLoginTime" sql-type="datetime" not-null="true"></column>
+    </property>
   </class>
 </hibernate-mapping>

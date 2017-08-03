@@ -13,15 +13,36 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            //new SchemaExportFixture().CreateTest();
+            // new SchemaExportFixture().DropTest();
+            // new SchemaExportFixture().CreateTest();
+            new SchemaExportFixture().ExecuteTest();
+            //TestGenerationStrategy();
             //Console.ReadLine();
-            Fun1();
         }
 
-        public static void Fun1()
+        /// <summary>
+        /// Test SchemaExport.
+        /// </summary>
+        public static void TestSchemaExport()
         {
             User user = new User();
-            user.Username = "Joseph";
+            user.UserId = Guid.NewGuid();
+            user.Username = "Joseph" + DateTime.Now;
+            user.Age = 22;
+            user.Gender = 'M';
+            user.Password = "123456";
+            user.LastLoginTime = DateTime.Now;
+            UserDal.InSertUser(user);
+        }
+
+        /// <summary>
+        /// Primary key generation strategy
+        /// </summary>
+        public static void TestGenerationStrategy()
+        {
+            User user = new User();
+            user.UserId = Guid.NewGuid();
+            user.Username = "Joseph"+DateTime.Now;
             user.Age = 22;
             user.Gender = 'M';
             user.Password = "123456";

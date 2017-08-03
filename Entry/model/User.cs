@@ -8,7 +8,7 @@ namespace Entry.model
 {
     public class User
     {
-        public virtual Guid Id
+        public virtual Guid UserId
         {
             get;
             set;
@@ -46,10 +46,11 @@ namespace Entry.model
             set;
         }
 
-        public virtual ISet<Order> Orders
+        public virtual string Email
         {
             get;
             set;
         }
+
     }
 }

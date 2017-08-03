@@ -44,6 +44,6 @@ Execute
 
 
 WinFormNHDemo\NHibernate\Persister\Entity\AbstractEntityPersister.cs
-insert
+public object Insert(object[] fields, object obj, ISessionImplementor session)
 dynamic-insert="false"
 generate sql statement

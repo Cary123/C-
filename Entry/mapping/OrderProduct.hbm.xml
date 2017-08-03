@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="Entry" namespace="Entry.model" default-lazy="true">
+  <class name="OrderProduct" table="OrderProduct">
+    <composite-id>
+      <key-many-to-one name="OrderId" foreign-key="fk_003">
+        <column name="OrderId" sql-type="uniqueidentifier" not-null="true"></column>
+      </key-many-to-one>
+      <key-many-to-one name="ProductId" foreign-key="fk_002">
+        <column name="ProductId" sql-type="uniqueidentifier" not-null="true"></column> 
+      </key-many-to-one>
+    </composite-id>
+    <property name="Detail">
+      <column name="Detail" sql-type="xml"></column>
+    </property>
+  </class>
+</hibernate-mapping>
