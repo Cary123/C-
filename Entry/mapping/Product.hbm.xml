@@ -14,9 +14,9 @@
     <property name="Price">
       <column name="Price" sql-type="float"></column>
     </property>   
-    <set name="Orders" table="OrderProduct">
-      <key column="ProductId" foreign-key="fk_003"></key>
-      <many-to-many column="OrderId" class="Order"></many-to-many>
+    <set name="Orders" table="OrderProduct" lazy="true">
+      <key column="ProductId" foreign-key="fk_product_orderproduct"></key>
+      <many-to-many column="OrderId" class="Order" foreign-key="fk_order_orderproduct"></many-to-many>
     </set>
   </class>
 </hibernate-mapping>

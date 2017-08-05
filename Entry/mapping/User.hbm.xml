@@ -26,5 +26,9 @@
     <property name="LastLoginTime">
       <column name="LastLoginTime" sql-type="datetime" not-null="true"></column>
     </property>
+    <set name="Orders" table="Order" inverse="true" lazy="true">
+      <key column="UserId" foreign-key="fk_user_order"></key>
+      <one-to-many class="Order"/>
+    </set>
   </class>
 </hibernate-mapping>

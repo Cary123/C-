@@ -52,5 +52,11 @@ namespace Entry.model
             set;
         }
 
+        public  virtual ISet<Order> Orders
+        {
+            get;
+            set;
+        }
+
     }
 }

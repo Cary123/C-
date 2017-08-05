@@ -13,10 +13,14 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            // new SchemaExportFixture().DropTest();
-            // new SchemaExportFixture().CreateTest();
+            //new SchemaExportFixture().DropTest();
+
+            //new SchemaExportFixture().CreateTest();
+
             new SchemaExportFixture().ExecuteTest();
+
             //TestGenerationStrategy();
+
             //Console.ReadLine();
         }
 
