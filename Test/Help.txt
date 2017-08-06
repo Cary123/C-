@@ -1,33 +1,47 @@
-﻿(1) hibernate.cfg.xml
+﻿一、配置文件
+hibernate.cfg.xml
+主要的几种方式：
+1. 放在App.config里面，section为<hibernate-configuration></hibernate-configuration>
+2. 放在根目录下，命名必须为 hibernate.cfg.xml
+3. 自己命名
 WinFormNHDemo\NHibernate\Cfg\Configuration.cs
 Configure()
-(2) Parse
+protected Configuration DoConfigure(ISessionFactoryConfiguration factoryConfiguration)
+
+Model.hbm.xml
+Parse
 WinFormNHDemo\NHibernate\Cfg\ConfigurationSchema\HibernateConfiguration.cs
 Parse(XPathNavigator navigator, bool fromAppConfig)
 
-WinFormNHDemo\NHibernate\Cfg\ConfigurationSchema\CfgXmlHelper.cs
-CfgXmlHelper()
+二、常用的一些属性
+1.Primary key Generation Strategy
+assigned  ： 让应用程序在 Save()之前为对象分配一个标示符。 
+guid      ： 使用新的System.Guid实例作为标示符。 
+guid.comb : 一种改进的GUID，它通过组合GUID和系统时间，以使其在索引和检索事有更优的性能。
+native    ： 根据底层数据库的能力选择identity, sequence 或者hilo中的一个。
+uuid.hex  : 用一个System.Guid的ToString()方法法生成字符串类型的标识符。
 
-WinFormNHDemo\NHibernate\Cfg\ConfigurationSchema\MappingConfiguration.cs
-Parse(XPathNavigator mappingElement)
 
-WinFormNHDemo\NHibernate\Cfg\Configuration.cs
-GetAllHbmXmlResourceNames(Assembly assembly)
-
-1. inverse属性
-Inverse属性的作用是：是否将对集合对象的修改反映到数据库中。 
-inverse属性的默认值为false，表示对集合对象的修改会被反映到数据库中；
-inverse=false 的为主动方，由主动方负责维护关联关系。
-inverse=”true” 表示对集合对象的修改不会被反映到数据库中。
-nverse只对集合起作用，也就是只对one-to-many或many-to-many有效, 集合元素包括<set/> <map/> <list/> <array /> <bag /> 
-
-2. cascade属性
+2.cascade属性
 Cascade则在主控方发生操作时用来判断是否要进行级联操作 
 具有cascade属性的标记包括<many-to-one /> <one-to-one /> <any /> <set /><bag /> <idbag /> <list /> <array />
 cascade属性的作用是描述关联对象进行操作时的级联特性。因此，只有涉及到关系的元素才有cascade属性。 
+cascade关系有以下几种
+　all: 所有情况下均进行关联操作，即save-update和delete。
+　none: 所有情况下均不进行关联操作。这是默认值。 
+　save-update: 在执行save/update/saveOrUpdate时进行关联操作。 
+　delete: 在执行delete 时进行关联操作。
 
 
-执行顺序
+3.inverse属性
+Inverse属性的作用是：是否将对集合对象的修改反映到数据库中，决定外键的关系维护权。 
+inverse属性的默认值为false，表示对集合对象的修改会被反映到数据库中；
+inverse="false" 的为主动方，由主动方负责维护关联关系。
+inverse="true" 表示对集合对象的修改不会被反映到数据库中。
+inverse只对集合起作用，也就是只对one-to-many或many-to-many有效, 集合元素包括<set/> <map/> <list/> <array /> <bag /> 
+
+
+三.CRUD执行顺序
 WinFormNHDemo\NHibernate\Engine\ActionQueue.cs
 public void ExecuteActions()
 {
@@ -41,7 +55,6 @@ public void ExecuteActions()
 
 WinFormNHDemo\NHibernate\Action\EntityInsertAction.cs
 Execute
-
 
 WinFormNHDemo\NHibernate\Persister\Entity\AbstractEntityPersister.cs
 public object Insert(object[] fields, object obj, ISessionImplementor session)

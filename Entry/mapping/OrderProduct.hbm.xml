@@ -1,14 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="Entry" namespace="Entry.model" default-lazy="true">
-  <class name="OrderProduct" table="OrderProduct">
+  <class name="OrderProduct" table="OrderProduct" dynamic-update="true">
     <composite-id>
-      <key-many-to-one name="OrderId" foreign-key="fk_order_orderproduct">
-        <column name="OrderId" sql-type="uniqueidentifier" not-null="true"></column>
+      <key-many-to-one name="Order" class="Order" foreign-key="fk_order_orderproduct">
+        <column name="OrderId" sql-type="uniqueidentifier"></column>
       </key-many-to-one>
-      <key-many-to-one name="ProductId" foreign-key="fk_product_orderproduct">
-        <column name="ProductId" sql-type="uniqueidentifier" not-null="true"></column> 
+      <key-many-to-one name="Product" class="Product" foreign-key="fk_product_orderproduct">
+        <column name="ProductId" sql-type="uniqueidentifier"></column>
       </key-many-to-one>
     </composite-id>
+    <property name="ProductNum">
+      <column name="ProductNum" sql-type="int"></column>
+    </property>
     <property name="Detail">
       <column name="Detail" sql-type="xml"></column>
     </property>

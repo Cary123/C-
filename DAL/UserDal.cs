@@ -11,18 +11,110 @@ namespace DAL
 {
     public class UserDal
     {
-        public static void InSertUser(User user)
+        public User GetUser(Guid userId)
         {
-            if (user != null)
+            ISession session = null;
+            try
             {
-                ISession session = NHibernateHelper.GetSession();
-                ITransaction transaction = session.BeginTransaction();
-                session.BeginTransaction();
-                session.Save(user);
-                session.Flush();
-                transaction.Commit();
+                User user = null;
+                if (userId != Guid.Empty)
+                {
+                    session = NHibernateHelper.GetSession();
+                    user = (User)session.Get(typeof(User), userId);
+                }
+                return user;
             }
-           
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                NHibernateHelper.CloseSession();
+            }
+        }
+
+        public static void InsertUser(User user)
+        {
+            ISession session = null;
+            ITransaction transaction = null;
+            try
+            {
+                if (user != null)
+                {
+                    session = NHibernateHelper.GetSession();
+                    transaction = session.BeginTransaction();
+                    session.BeginTransaction();
+                    session.Save(user);
+                    session.Flush();
+                    transaction.Commit();
+                }
+            }
+            catch (Exception)
+            {
+
+                transaction.Rollback();
+                throw;
+            }
+            finally
+            {
+                NHibernateHelper.CloseSession();
+            }          
+        }
+
+        public static void UpdateUser(User user)
+        {
+            ISession session = null;
+            ITransaction transaction = null;
+            try
+            {
+                if (user != null)
+                {
+                    session = NHibernateHelper.GetSession();
+                    transaction = session.BeginTransaction();
+                    session.BeginTransaction();
+                    session.Update(user);
+                    session.Flush();
+                    transaction.Commit();
+                }
+            }
+            catch (Exception)
+            {
+                transaction.Rollback();
+                throw;
+            }
+            finally
+            {
+                NHibernateHelper.CloseSession();                
+            }
+        }
+
+        public static void DeleteUser(User user)
+        {
+            ISession session = null;
+            ITransaction transaction = null;
+            try
+            {
+                if (user != null)
+                {
+                    session = NHibernateHelper.GetSession();
+                    transaction = session.BeginTransaction();
+                    session.BeginTransaction();
+                    session.Delete(user);
+                    session.Flush();
+                    transaction.Commit();
+                }
+            }
+            catch (Exception)
+            {
+                transaction.Rollback();
+                throw;
+            }
+            finally
+            {
+                NHibernateHelper.CloseSession();
+            }
         }
     }
 }

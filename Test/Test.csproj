@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\21919\Desktop\project\dllshare\Iesi.Collections.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -79,7 +83,12 @@
     <Content Include="lib\net\Remotion.Linq.dll" />
     <Content Include="lib\net\Remotion.Linq.xml" />
     <Content Include="lib\net\System.Linq.Dynamic.dll" />
-    <Content Include="NHibernateTestSql.sql" />
+    <Content Include="sql\InitData.sql" />
+    <Content Include="sql\ProcDeleteOrder.sql" />
+    <Content Include="sql\ProcDeleteProduct.sql" />
+    <EmbeddedResource Include="sql\NHibernateTestSql.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <Content Include="Help.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -8,11 +8,11 @@
     <property name="OrderDate">
       <column name="OrderDate" sql-type="datetime" not-null="true"></column>
     </property>
-    <many-to-one name="User" column="UserId" foreign-key="fk_user_order" class="User" cascade="save-update" not-null="true">   
+    <many-to-one name="User" column="UserId" foreign-key="fk_user_order" class="User" lazy="false">   
     </many-to-one>
-    <set name="Products" table="OrderProduct" inverse="true" lazy="true">
-      <key column="OrderId" foreign-key="fk_Order_orderproduct"></key>
-      <many-to-many column="ProductId" class="Product" foreign-key="fk_product_orderproduct"></many-to-many>
+    <set name="OrderProducts" inverse="true">
+      <key column="OrderId" foreign-key="fk_order_orderproduct"></key>
+      <one-to-many class="OrderProduct"/>
     </set>
   </class>
 </hibernate-mapping>

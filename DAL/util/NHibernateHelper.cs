@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Context;
+using System.Data.SqlClient;
 
 namespace DAL.util
 {
@@ -16,7 +17,7 @@ namespace DAL.util
 
         private static readonly ThreadLocal<ISession> localSession = new ThreadLocal<ISession>();
 
-        //private static ISession session
+        private static SqlConnection conn = null;
 
         static NHibernateHelper()
         {
@@ -38,12 +39,31 @@ namespace DAL.util
             return localSession.Value;
         }
 
-        public static void CloseSessionFactory()
+        public static void CloseSession()
         {
             if (localSession.Value != null)
             {
+                ISession session = localSession.Value;
+                session.Close();
                 localSession.Value = null;
             }
+        }
+
+        public static SqlConnection GetSqlConnection()
+        {
+            ISession session = null;
+            SqlConnection conn = null;
+            if (localSession.Value != null)
+            {
+                session = localSession.Value;
+                conn = new SqlConnection(session.Connection.ConnectionString);
+            }
+            else
+            {
+                session = GetSession();
+                conn = new SqlConnection(session.Connection.ConnectionString);
+            }
+            return conn;
         }
     }
 }

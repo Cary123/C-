@@ -11,6 +11,6 @@ namespace Entry.model
         public virtual Guid OrderId { get; set; }
         public virtual User User { get; set; }
         public virtual DateTime OrderDate { get; set; }
-        public virtual ISet<Product> Products { get; set; }
+        public virtual ISet<OrderProduct> OrderProducts { get; set; }
     }
 }
