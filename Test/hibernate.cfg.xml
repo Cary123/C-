@@ -9,10 +9,10 @@ for your own use before compile tests in VisualStudio.
   <session-factory>
     <property name="connection.driver_class">NHibernate.Driver.SqlClientDriver</property>
     <property name="connection.connection_string">
-      Data Source=localhost;Initial Catalog=NHibernateTest;Integrated Security=True
+      Data Source=.\EXPRESS;Initial Catalog=NHibernateTest;Integrated Security=True
     </property>
     <property name="show_sql">true</property>
-    <property name="dialect">NHibernate.Dialect.MsSql2012Dialect</property>
+    <property name="dialect">NHibernate.Dialect.MsSql2005Dialect</property>
     <mapping assembly="Entry"/>
   </session-factory>
 </hibernate-configuration>

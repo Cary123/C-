@@ -24,9 +24,17 @@ namespace Test
 
             //TestCascade();
 
-            TestStoreProcedure();
+            //TestStoreProcedure();
 
-            //Console.ReadLine();
+            //TestGenerationStrategy();
+
+            SelectUser();
+            Console.ReadLine();
+        }
+
+        public static void SelectUser()
+        {
+            UserDal.GetUserByName("Joseph");
         }
 
         /// <summary>
@@ -36,12 +44,13 @@ namespace Test
         {
             User user = new User();
             user.UserId = Guid.NewGuid();
-            user.Username = "Joseph"+DateTime.Now;
+            user.Username = "Joseph";
             user.Age = 22;
             user.Gender = 'M';
             user.Password = "123456";
             user.Email = "123@qq.com";
             user.Phone = "13958574758";
+            user.State = LoginState.Online;
             user.LastUpdateTime = DateTime.Now;
             UserDal.InsertUser(user);
         }

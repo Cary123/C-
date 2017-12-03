@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="model\LoginState.cs" />
     <Compile Include="model\Order.cs" />
     <Compile Include="model\OrderProduct.cs" />
     <Compile Include="model\Product.cs" />
@@ -60,6 +61,7 @@
   <ItemGroup>
     <EmbeddedResource Include="mapping\User.hbm.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

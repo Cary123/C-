@@ -35,6 +35,37 @@ namespace DAL
             }
         }
 
+        public static void GetUserByName(string name)
+        {
+            ISession session = null;
+            ITransaction transaction = null;
+            try
+            {
+                
+                session = NHibernateHelper.GetSession();
+                transaction = session.BeginTransaction();
+                session.BeginTransaction();
+
+                IQuery query = session.CreateQuery("from User user where user.Username = :username");
+                query.SetString("username",name);
+                User user = query.UniqueResult() as User;
+                user.Age = 20;
+                session.Flush();
+                transaction.Commit();
+                
+            }
+            catch (Exception e)
+            {
+
+                transaction.Rollback();
+                throw e;
+            }
+            finally
+            {
+                NHibernateHelper.CloseSession();
+            }
+        }
+
         public static void InsertUser(User user)
         {
             ISession session = null;

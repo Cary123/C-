@@ -23,6 +23,9 @@
     <property name="Email">
       <column name="Email" sql-type="nvarchar(100)" not-null="true"></column>
     </property>
+    <property name="State">
+      <column name="State" sql-type="int" ></column>
+    </property>
     <property name="LastUpdateTime">
       <column name="LastUpdateTime" sql-type="datetime"></column>
     </property>
